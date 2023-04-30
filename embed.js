@@ -1,9 +1,6 @@
 let cros = /(CrOS)/.test(navigator.userAgent);
 let warnings = {};
-
-function from_id(id) {
-  return document.getElementById(id);
-}
+let from_id = (id) => {return document.getElementById(id)};
 
 function update_warnings() {
   let warning_div = from_id("warning_div");
@@ -25,6 +22,16 @@ function test_zoom() {
   update_warnings();
 }
 
+async function get_bookmarklet() {
+  let r1 = await fetch("./payload.min.js");
+  let minified = await r1.text();
+  if (minified) {return minified}
+
+  let r2 = await fetch("./payload.js");
+  let full = await r2.text();
+  return full
+}
+
 window.onload = () => {
   let docx_iframe = from_id("docx_iframe");
   let overlay = from_id("overlay");
@@ -40,11 +47,9 @@ window.onload = () => {
     update_warnings();
   }
 
-  fetch("./payload.js")
-    .then(r => r.text())
-    .then(js => {
-      from_id("launcher_link").href = `javascript:${encodeURIComponent(js)}`;
-    })
+  get_bookmarklet().then(js => {
+    from_id("launcher_link").href = `javascript:${encodeURIComponent(js)}`;
+  });
 
   test_zoom();
 }
