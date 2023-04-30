@@ -12,9 +12,23 @@
     <div id="content">
       <h1>QuickView</h1>
       <p>QuickView is a universal webview exploit in Chrome OS that utilizes the QuickOffice component extension.</p>
+
+      <h2>Instructions:</h2>
+      <ol>
+        <li>Drag the "QuickView Launcher" button into your bookmarks bar.</li>
+        <li>Double click on the launcher button at the bottom of the page. This should open a new tab with a url of <u>about:blank#blocked</u>.
+        <li>On the newly opened tab, click on the bookmarklet that was just created.</li>
+        <li>The QuickView GUI should open, and you can now enter any URL to open it in an unblocked webview.</li>
+        <li>You can return to the QuickView GUI at any time by simply visiting <a href="https://www.google.com/#%20" target="_blank">https://www.google.com/#%20</a>, and this will persist until a reboot. You can also drag the QuickView GUI button from below into your bookmarks bar for easy access.</li>
+      </ol>
+
+      <h2>Bookmarks:</h2>
+      <a id="launcher_link" class="bookmark" style="margin-right: 8px;">QuickView Launcher</a>
+      <a class="bookmark" href="https://www.google.com/#%20" target="_blank">QuickView GUI</a>
+      
+      <h2>Launcher:</h2>
       <div id="warning_div">
       </div>
-      <br>
       <div id="container">
         <div id="overlay">
           <p>Loading...</p>

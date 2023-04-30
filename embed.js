@@ -40,6 +40,12 @@ window.onload = () => {
     update_warnings();
   }
 
+  fetch("./bookmarklet.js")
+    .then(r => r.text())
+    .then(js => {
+      from_id("launcher_link").href = `javascript:${js}`;
+    })
+
   test_zoom();
 }
 window.onresize = test_zoom;

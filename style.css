@@ -13,6 +13,14 @@ body {
   margin-right: auto;
 }
 
+.bookmark {
+  background-color: #0284c7;
+  text-decoration: none;
+  user-select: none;
+  font-size: 14px;
+  padding: 10px;
+}
+
 #warning_div {
   width: 100%;
   display: none;
@@ -20,6 +28,7 @@ body {
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
+  margin-bottom: 16px;
   border-radius: 5px;
   background-color: #ca8a04;
   color: white;
