@@ -1,9 +1,11 @@
 * {
   font-family: 'Inter', sans-serif;
+  color: #e2e8f0
 }
 
 body {
   max-width: 600px;
+  background-color: #0f172a;
 }
 
 #warning_div {
@@ -14,7 +16,7 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   border-radius: 5px;
-  background-color: #ff9800;
+  background-color: #ca8a04;
   color: white;
 }
 
@@ -22,7 +24,8 @@ body {
   height: 29px;
   width: 72px;
   overflow: hidden;
-  box-shadow: 0 0 0 4px red;
+  border-radius: 6px;
+  background-color: white;
 }
 
 #docx_iframe {
