@@ -1,0 +1,15 @@
+#container {
+  height: 29px;
+  width: 72px;
+  overflow: hidden;
+  box-shadow: 0 0 0 4px red;
+}
+#docx_iframe {
+  display: block;
+  height: 477px;
+  width: 448px;
+  position: relative;
+  top: calc(-477px + 30px + 30px);
+  left: -43px;
+  border: none;
+}
