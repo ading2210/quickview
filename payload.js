@@ -21,7 +21,7 @@
   }
 
   .button {
-    background-color: #1a73e8;
+    background-color: #0284c7;
     text-decoration: none;
     user-select: none;
     font-size: 14px;
