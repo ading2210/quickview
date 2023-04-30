@@ -14,7 +14,7 @@ function update_warnings() {
 function test_zoom() {
   let zoom_test = from_id("zoom_test");
   if (zoom_test && zoom_test.clientWidth * window.devicePixelRatio !== 100) {
-    warnings.zoom = "You need to set your browser zoom as well as display size to 100%.";
+    warnings.zoom = "You need to set your browser zoom and screen display size to 100%.";
   }
   else if (warnings.zoom) {
     delete warnings.zoom;
