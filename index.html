@@ -6,27 +6,33 @@
     <title>QuickView Exploit</title>
     <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
     <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./img/icon_32.png">
     <script src="./embed.js"></script>
   </head> 
   <body>
     <div id="content">
-      <h1>QuickView</h1>
-      <p>QuickView is a universal webview exploit in Chrome OS that utilizes the QuickOffice component extension.</p>
+      <div id="title_div">
+        <img src="./img/icon.png" height="64px">
+        <h1>QuickView</h1>
+      </div>
+      <hr>
+
+      <p>QuickView is a universal webview exploit in Chrome OS that utilizes the QuickOffice component extension. This exploit lets you create login windows with arbitrary URLs, thus allowing you to load pages without any extensions.</p>
 
       <h2>Instructions:</h2>
       <ol>
         <li>Drag the "QuickView Launcher" button into your bookmarks bar.</li>
-        <li>Double click on the launcher button at the bottom of the page. This should open a new tab with a url of <u>about:blank#blocked</u>.
+        <li>Double click on the opener button at the bottom of the page. This should open a new tab with a URL of <u>about:blank#blocked</u>.
         <li>On the newly opened tab, click on the bookmarklet that was just created.</li>
         <li>The QuickView GUI should open, and you can now enter any URL to open it in an unblocked webview.</li>
         <li>You can return to the QuickView GUI at any time by simply visiting <a href="https://www.google.com/#%20" target="_blank">https://www.google.com/#%20</a>, and this will persist until a reboot. You can also drag the QuickView GUI button from below into your bookmarks bar for easy access.</li>
       </ol>
 
       <h2>Bookmarks:</h2>
-      <a id="launcher_link" class="bookmark" style="margin-right: 8px;">QuickView Launcher</a>
-      <a class="bookmark" href="https://www.google.com/#%20" target="_blank">QuickView GUI</a>
+      <a id="launcher_link" class="button" style="margin-right: 8px;">QuickView Launcher</a>
+      <a class="button" href="https://www.google.com/#%20" target="_blank">QuickView Shortcut</a>
       
-      <h2>Launcher:</h2>
+      <h2 style="margin-bottom: 12px;">Opener Button:</h2>
       <div id="warning_div">
       </div>
       <div id="container">

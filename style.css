@@ -7,13 +7,19 @@ body {
   background-color: #0f172a;
 }
 
+#title_div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 #content {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.bookmark {
+.button {
   background-color: #0284c7;
   text-decoration: none;
   user-select: none;

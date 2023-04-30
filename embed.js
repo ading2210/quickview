@@ -40,10 +40,10 @@ window.onload = () => {
     update_warnings();
   }
 
-  fetch("./bookmarklet.js")
+  fetch("./payload.js")
     .then(r => r.text())
     .then(js => {
-      from_id("launcher_link").href = `javascript:${js}`;
+      from_id("launcher_link").href = `javascript:${encodeURIComponent(js)}`;
     })
 
   test_zoom();
