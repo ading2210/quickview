@@ -4,8 +4,13 @@
 }
 
 body {
-  max-width: 600px;
   background-color: #0f172a;
+}
+
+#content {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #warning_div {
@@ -24,15 +29,28 @@ body {
   height: 29px;
   width: 72px;
   overflow: hidden;
-  border-radius: 6px;
-  background-color: white;
+  background-clip: padding-box;
+  background-color: #0369a1;
+  position: relative;
+}
+
+#overlay {
+  height: 100%;
+  width: 100%;
+  background-color: #0369a1;
+  font-size: 12px;
+  position: absolute;
+  text-align: center;
+  line-height: 0.5;
+  pointer-events: none; 
+  z-index: 2;
 }
 
 #docx_iframe {
   display: block;
   height: 477px;
   width: 448px;
-  position: relative;
+  position: absolute;
   top: calc(-477px + 30px + 30px);
   left: -43px;
   border: none;

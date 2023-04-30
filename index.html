@@ -7,16 +7,21 @@
     <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
     <link rel="stylesheet" href="./style.css">
     <script src="./embed.js"></script>
-  </head>
+  </head> 
   <body>
-    <h1>QuickView</h1>
-    <p>QuickView is a universal webview exploit in Chrome OS that utilizes the deprecated QuickOffice component extension.</p>
-    <div id="warning_div">
+    <div id="content">
+      <h1>QuickView</h1>
+      <p>QuickView is a universal webview exploit in Chrome OS that utilizes the QuickOffice component extension.</p>
+      <div id="warning_div">
+      </div>
+      <br>
+      <div id="container">
+        <div id="overlay">
+          <p>Loading...</p>
+        </div>
+        <iframe id="docx_iframe" src="about:blank"></iframe>
+      </div>
+      <div id="zoom_test"></div>
     </div>
-    <br>
-    <div id="container">
-      <iframe id="docx_iframe" src="about:blank"></iframe>
-    </div>
-    <div id="zoom_test"></div>
   </body>
 </html>

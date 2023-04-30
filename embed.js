@@ -27,10 +27,12 @@ function test_zoom() {
 
 window.onload = () => {
   let docx_iframe = from_id("docx_iframe");
+  let overlay = from_id("overlay");
   if (cros) {
     docx_iframe.src = "./docx/quickview-embed.docx";
     setTimeout(() => {
-      docx_iframe.style.display = "block";
+      overlay.innerHTML = "<p>Click me!</p>";
+      overlay.style.backgroundColor = "#0284c7";
     }, 5000);
   }
   else {
