@@ -175,7 +175,7 @@
     bg = await get_background();
     document.write(html);
     setup_page();
-    setup_listener();
+    //setup_listener();
     from_id("webview_button").onclick = button_callback;
   }
 
