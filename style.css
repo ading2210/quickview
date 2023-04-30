@@ -1,9 +1,30 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  max-width: 600px;
+}
+
+#warning_div {
+  width: 100%;
+  display: none;
+  box-sizing: border-box;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  background-color: #ff9800;
+  color: white;
+}
+
 #container {
   height: 29px;
   width: 72px;
   overflow: hidden;
   box-shadow: 0 0 0 4px red;
 }
+
 #docx_iframe {
   display: block;
   height: 477px;
@@ -12,4 +33,8 @@
   top: calc(-477px + 30px + 30px);
   left: -43px;
   border: none;
+}
+
+#zoom_test {
+  width: 100px;
 }
