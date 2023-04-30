@@ -37,10 +37,6 @@ window.onload = () => {
   let overlay = from_id("overlay");
   if (cros) {
     docx_iframe.src = "./docx/quickview-embed.docx";
-    setTimeout(() => {
-      overlay.innerHTML = "<p>Click me!</p>";
-      overlay.style.backgroundColor = "#0284c7";
-    }, 5000);
   }
   else {
     warnings.cros = "This only works on Chrome OS!";
