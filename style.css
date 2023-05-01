@@ -21,7 +21,7 @@ body {
 }
 
 .button {
-  background-color: #0284c7;
+  background-color: #1a73e8;
   text-decoration: none;
   user-select: none;
   font-size: 14px;
@@ -42,18 +42,20 @@ body {
 }
 
 #container {
-  height: 29px;
-  width: 72px;
+  height: 40px;
+  width: 100px;
   overflow: hidden;
   background-clip: padding-box;
   background-color: #0369a1;
   position: relative;
+  background-color: white;
 }
 
 #overlay {
   height: 100%;
   width: 100%;
-  background-color: #0369a1;
+  color: #f1f1f1;
+  font-weight: bold;
   font-size: 12px;
   position: absolute;
   text-align: center;
@@ -66,10 +68,14 @@ body {
   display: block;
   height: 477px;
   width: 448px;
-  position: absolute;
-  top: calc(-477px + 30px + 30px);
+  position: relative;
+  top: calc(-477px + 60px);
   left: -43px;
   border: none;
+  transform: scale(5);
+  transform-origin: 43px calc(477px - 60px);
+  margin-left: -10px;
+  margin-top: -10px;
 }
 
 #zoom_test {
