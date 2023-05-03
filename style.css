@@ -54,14 +54,14 @@ body {
 #overlay {
   height: 100%;
   width: 100%;
-  color: #f1f1f1;
   font-weight: bold;
   font-size: 12px;
   position: absolute;
   text-align: center;
-  line-height: 0.5;
+  line-height: 1;
   pointer-events: none; 
   z-index: 2;
+  font-size: 14px;
 }
 
 #docx_iframe {

