@@ -85,8 +85,8 @@
         <ul id="urls_list"></ul>
 
         <h2>Credits:</h2>
-        <p>QuickView was created by Bypassi#7037 and vk6#7391, and it is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.txt" target="_blank">GNU GPL v3</a>. The source code is available at: <a href="https://github.com/ading2210/quickview" target="_blank">https://github.com/ading2210/quickview</a></p>
-        <p>This exploit is part of the <a href="https://github.com/swarm-team">{swarm} project</a> and utilizes a variation of the <a href="https://bolg.glitch.me/_/point-blank" target="_blank">point-blank</a> exploit.</p>
+        <p>QuickView was created by vk6#7391 and Bypassi#7037, and it is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.txt" target="_blank">GNU GPL v3</a>. The source code is available at: <a href="https://github.com/ading2210/quickview" target="_blank">https://github.com/ading2210/quickview</a></p>
+        <p>This exploit is part of the <a href="https://github.com/swarm-team" target="_blank">{swarm} project</a> and utilizes a variation of the <a href="https://blog.bypassi.com/_/point-blank" target="_blank">point-blank</a> exploit.</p>
       </div>
     </body>
   </html>`;
@@ -125,13 +125,10 @@
 
       li.append(link);
       urls_list.append(li);
-      console.log(li);
     }
-    console.log(urls_list);
-    console.log(url_input);
   }
 
-  function button_callback() {
+  function submit_callback() {
     let url = from_id("url_input").value;
     if (!url.startsWith("https://") && !url.startsWith("http://")) {
       alert("Warning: Your URL does not begin with http:// or https://.");
@@ -173,18 +170,17 @@
       bg.chrome.tabs.remove(tab_id);
       bg.popup = bg.open();
       let url = bg.popup.prompt("What URL would you like to open a webview for?", "https://www.google.com");
-      open_webview(url);
+      if (url) {open_webview(url);} 
     }
     bg.chrome.tabs.onUpdated.addListener(bg.tab_listener);
   }
 
   function init(background) {
     bg = background;
-    console.log(bg);
     document.write(html);
     setup_page();
     setup_listener();
-    from_id("webview_button").onclick = button_callback;
+    from_id("webview_button").onclick = submit_callback;
   }
 
   get_background(init);
