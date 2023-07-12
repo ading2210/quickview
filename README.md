@@ -4,7 +4,7 @@ QuickView is a universal webview exploit in Chrome OS that utilizes the QuickOff
 
 For the exploit itself, as well as instructions, visit this link: https://quickview-exploit.pages.dev/
 
-A blog post with an explanation is available on [my website](https://ading.fr.to/blog/posts/quickview.html).
+A blog post with an explanation is available on [my website](https://ading.dev/blog/posts/quickview.html).
 
 ## Credits
 
