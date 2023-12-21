@@ -9,7 +9,7 @@
   }
   window.quickview = true;
 
-  let from_id = (id) => {return document.getElementById(id)};
+  let from_id = document.getElementById.bind(document);
   let style = `
   * {
     font-family: "Inter", sans-serif;
